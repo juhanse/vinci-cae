@@ -1,20 +1,35 @@
 package com.example.fiche2.models;
 
-public class Course {
-    // Constructeur vide requis par JPA / Jackson
-    public Course() {}
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "courses")
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    @NotBlank
+    @Size(max = 100)
+    private String title;
+
+    @NotBlank
+    @Size(max = 500)
+    private String description;
+
+    @Positive
+    private int credits;
+
+    public Course() {}
     public Course(String title, String description, int credits) {
         this.title = title;
         this.description = description;
         this.credits = credits;
     }
-
-    private String title;
-    private String description;
-    private int credits;
-
-    // getters / setters générés par l'IDE
 
     public String getTitle() {
         return title;
