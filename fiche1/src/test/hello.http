@@ -1,0 +1,25 @@
+### Get the standard message
+GET {{baseUrl}}/hello/
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200);
+    });
+
+    client.test("Response content-type is json", function() {
+        client.assert(response.contentType.mimeType === "application/json");
+    });
+
+    client.test("No parameters returns Hello World", function() {
+        client.assert(response.body.message === "Hello World");
+    });
+%}
+
+### Get the custom message
+GET {{baseUrl}}/hello/?name=Sarah
+
+> {%
+    client.test("Name parameters returns proper name", function() {
+        client.assert(response.body.message === "Hello Sarah");
+    });
+%}

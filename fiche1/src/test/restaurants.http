@@ -1,0 +1,5 @@
+### Get the restaurants
+GET {{baseUrl}}/restaurants/
+
+### Get the restaurant with specific country
+GET {{baseUrl}}/restaurants/?cuisine=Française
